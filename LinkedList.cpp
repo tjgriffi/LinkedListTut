@@ -33,4 +33,35 @@ public class LinkedList{
 		
 		return kBefore;
 	}
+	
+	//Method to get a number in the form of a LinkedList
+	int getNum(LinkedListNode list){
+		LinkedListNode curr = list;
+		int num = 0;
+		int powOfTen = 1;
+		while(curr != null){
+			num = curr._data * powOfTen;
+			curr = curr.next;
+			powOfTen *= 10;
+		}
+		
+		return num;
+	}
+	
+	//Method to sum together to numbers in the form of a LinkedList
+	LinkedListNode getSum(LinkedListNode list1, LinkedListNode list2){
+		int sum = getNum(list1) + getNum(list2);
+		LinkedListNode toReturn = new LinkedListNode();
+		LinkedListNode curr = toReturn;
+		while(sum > 0){
+			curr._data = sum%10;
+			sum = sum/10;
+			if(sum != 0){
+				curr._next = new LinkedListNode();
+				curr = curr._next;
+			}
+		}
+		
+		return toReturn;
+	}
 }
